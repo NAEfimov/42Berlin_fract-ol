@@ -71,7 +71,7 @@ $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
 clean:
 	$(RM) $(OBJS) $(DEPS)
 fclean: clean
-	$(RM) $(NAME)
+	$(RM) -d $(NAME) $(BUILD_DIR)
 
 re:
 	$(MAKE) fclean
