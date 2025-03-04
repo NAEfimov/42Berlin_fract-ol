@@ -6,7 +6,7 @@
 /*   By: nefimov <nefimov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 12:22:28 by nefimov           #+#    #+#             */
-/*   Updated: 2025/03/04 12:25:10 by nefimov          ###   ########.fr       */
+/*   Updated: 2025/03/04 17:26:11 by nefimov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ int	key_win(int keycode,void *param)
 		clean_exit(param, 0);
 	else if (keycode == KEY_LEFT || keycode == KEY_RIGHT)
 	{
-		xwin->moveX -= MOVE_INC * (keycode % 10 - 2);
+		xwin->moveX += MOVE_INC * (keycode % 10 - 2);
 		draw_fractal(xwin);
 	}
 	else if (keycode == KEY_UP || keycode == KEY_DOWN)
 	{
-		xwin->moveY -= MOVE_INC * (keycode % 10 - 3);
+		xwin->moveY += MOVE_INC * (keycode % 10 - 3);
 		draw_fractal(xwin);
 	} 
 	return (0);

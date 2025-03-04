@@ -6,11 +6,30 @@
 /*   By: nefimov <nefimov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 18:49:16 by nefimov           #+#    #+#             */
-/*   Updated: 2025/03/04 12:35:10 by nefimov          ###   ########.fr       */
+/*   Updated: 2025/03/04 17:22:28 by nefimov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
+
+void	draw_fractal(t_mlx *xwin)
+{
+	int	x;
+	int	y;
+	int	color;
+
+	y = -1;
+	while (++y < SY)
+	{
+		x = -1;
+		while (++x < SX)
+		{
+			color = mlx_get_color_value(xwin->mlx, xwin->get_fractal_color(xwin, x, y));
+			set_bits(xwin->img_addr + y*xwin->sl + x*xwin->bpp/8, color, xwin->bpp);
+		}
+	}	
+	mlx_put_image_to_window(xwin->mlx, xwin->win, xwin->img, 0, 0);
+}
 
 int get_julia_color(t_mlx *xwin, double x, double y)
 {

@@ -6,7 +6,7 @@
 /*   By: nefimov <nefimov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 17:58:22 by nefimov           #+#    #+#             */
-/*   Updated: 2025/03/04 13:26:11 by nefimov          ###   ########.fr       */
+/*   Updated: 2025/03/04 17:13:28 by nefimov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@
 # define SX 		900
 # define SY 		600
 # define MAX_ITER 	255
+# define MAX_C		2
+# define MIN_C		-2
 # define JULIA		0
 # define MANDELBROT	1
 # define MOVE_INC	0.03
@@ -49,6 +51,7 @@ typedef struct s_mlx
 }	t_mlx;
 
 void	read_args(int argc, char *argv[], t_mlx *xwin);
+int		read_double(char *str, double *read);
 void	print_wrong_args(void);
 
 int		init_mlx(t_mlx *xwin);
