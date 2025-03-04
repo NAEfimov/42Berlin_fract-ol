@@ -17,7 +17,8 @@ NAME        := fractol
 
 INCS        := include libft
 
-LIBS        := mlx Xext X11 ft
+LIBS        := mlx Xext X11 ft m
+LIBS_DIR	:= libft libmlx
 LIBS_TARGET := libft/libft.a
 
 SRC_DIR     := src
@@ -25,7 +26,8 @@ SRCS		:=	\
 	main.c		\
 	fractals.c	\
 	utils.c		\
-	hooks.c
+	hooks.c		\
+	read_args.c
 
 SRCS        := $(SRCS:%=$(SRC_DIR)/%)
 
@@ -36,7 +38,8 @@ DEPS		:= $(OBJS:.o=.d)
 CC			:= cc
 CFLAGS		:= -Wall -Wextra -Werror
 CPPFLAGS	:= $(addprefix -I,$(INCS)) -MMD -MP
-LDFLAGS     := $(addprefix -L,$(dir $(LIBS_TARGET)))
+# LDFLAGS     := $(addprefix -L,$(dir $(LIBS_TARGET)))
+LDFLAGS     := $(addprefix -L,$(LIBS_DIR))
 LDLIBS      := $(addprefix -l,$(LIBS))
 
 #------------------------------------------------#
@@ -62,7 +65,7 @@ DIR_DUP     = mkdir -p $(@D)
 all: $(NAME)
 
 $(NAME): $(OBJS) $(LIBS_TARGET)
-	$(CC) $(CFLAGS) $(CPPFLAGS) $(LDFLAGS) -o $@ $^ $(LDLIBS)
+	$(CC) $(CFLAGS) $(CPPFLAGS) $(LDFLAGS) -o $@ $(OBJS) $(LDLIBS)
 	$(info CREATED $(NAME))
 
 $(LIBS_TARGET):
