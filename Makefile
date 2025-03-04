@@ -1,4 +1,4 @@
-NAME        = fractol
+NAME        := fractol
 
 #------------------------------------------------#
 #   INGREDIENTS                                  #
@@ -15,15 +15,17 @@ NAME        = fractol
 # CFLAGS    compiler flags
 # CPPFLAGS  preprocessor flags
 
-INCS        := include
+INCS        := include 
 
 LIBS        := mlx Xext X11
 
 SRC_DIR     := src
-SRCS		:=		\
-	main.c			\
-	fractals.c		\
-	utils.c
+SRCS		:=	\
+	main.c		\
+	fractals.c	\
+	utils.c		\
+	hooks.c
+
 SRCS        := $(SRCS:%=$(SRC_DIR)/%)
 
 BUILD_DIR   := .build
