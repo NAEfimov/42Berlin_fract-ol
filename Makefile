@@ -15,9 +15,10 @@ NAME        := fractol
 # CFLAGS    compiler flags
 # CPPFLAGS  preprocessor flags
 
-INCS        := include 
+INCS        := include libft
 
-LIBS        := mlx Xext X11
+LIBS        := mlx Xext X11 ft
+LIBS_TARGET := libft/libft.a
 
 SRC_DIR     := src
 SRCS		:=	\
@@ -35,6 +36,7 @@ DEPS		:= $(OBJS:.o=.d)
 CC			:= cc
 CFLAGS		:= -Wall -Wextra -Werror
 CPPFLAGS	:= $(addprefix -I,$(INCS)) -MMD -MP
+LDFLAGS     := $(addprefix -L,$(dir $(LIBS_TARGET)))
 LDLIBS      := $(addprefix -l,$(LIBS))
 
 #------------------------------------------------#
@@ -59,9 +61,12 @@ DIR_DUP     = mkdir -p $(@D)
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
+$(NAME): $(OBJS) $(LIBS_TARGET)
 	$(CC) $(CFLAGS) $(CPPFLAGS) $(LDFLAGS) -o $@ $^ $(LDLIBS)
 	$(info CREATED $(NAME))
+
+$(LIBS_TARGET):
+	$(MAKE) -C $(@D)
 
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
 	$(DIR_DUP)
@@ -71,8 +76,11 @@ $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
 -include $(DEPS)
 
 clean:
+	for f in $(dir $(LIBS_TARGET)); do $(MAKE) -C $$f clean; done
 	$(RM) $(OBJS) $(DEPS)
-fclean: clean
+fclean:
+	$(MAKE) clean
+	for f in $(dir $(LIBS_TARGET)); do $(MAKE) -C $$f fclean; done
 	$(RM) -d $(NAME) $(BUILD_DIR)
 
 re:

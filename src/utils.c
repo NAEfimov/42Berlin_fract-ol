@@ -6,7 +6,7 @@
 /*   By: nefimov <nefimov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 19:52:46 by nefimov           #+#    #+#             */
-/*   Updated: 2025/03/04 12:32:43 by nefimov          ###   ########.fr       */
+/*   Updated: 2025/03/04 13:17:36 by nefimov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@ int	init_mlx(t_mlx *xwin)
 	xwin->moveX = 0;
 	xwin->moveY = 0;
 	xwin->zoom = 1;
-	xwin->c_r = 0;
-	xwin->c_i = 0;
 	return (0);
 }
 

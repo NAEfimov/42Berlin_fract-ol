@@ -6,16 +6,18 @@
 /*   By: nefimov <nefimov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 17:51:57 by nefimov           #+#    #+#             */
-/*   Updated: 2025/03/04 12:38:36 by nefimov          ###   ########.fr       */
+/*   Updated: 2025/03/04 13:20:11 by nefimov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
+#include "libft.h"
 
 int		main(int argc, char *argv[])
 {
 	t_mlx	xwin;
 
+	read_args(argc, argv, &xwin);
 	init_mlx(&xwin);
 	draw_fractal(&xwin);
   	mlx_mouse_hook(xwin.win, mouse_win, &xwin);

@@ -6,7 +6,7 @@
 /*   By: nefimov <nefimov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 17:58:22 by nefimov           #+#    #+#             */
-/*   Updated: 2025/03/04 12:35:35 by nefimov          ###   ########.fr       */
+/*   Updated: 2025/03/04 13:26:11 by nefimov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <math.h>
+#include <limits.h>
 #include <stdio.h>
 #include "keys.h"
 
@@ -46,6 +47,9 @@ typedef struct s_mlx
 	double	c_r;
 	double	c_i;
 }	t_mlx;
+
+void	read_args(int argc, char *argv[], t_mlx *xwin);
+void	print_wrong_args(void);
 
 int		init_mlx(t_mlx *xwin);
 int		int_color(unsigned char r, unsigned char g, unsigned char b);
