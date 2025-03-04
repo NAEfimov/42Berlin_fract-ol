@@ -6,10 +6,12 @@
 /*   By: nefimov <nefimov@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 19:52:46 by nefimov           #+#    #+#             */
-/*   Updated: 2025/03/04 13:17:36 by nefimov          ###   ########.fr       */
+/*   Updated: 2025/03/04 19:14:58 by nefimov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <mlx.h>
+#include <stdlib.h>
 #include "main.h"
 
 int	init_mlx(t_mlx *xwin)
@@ -26,17 +28,18 @@ int	init_mlx(t_mlx *xwin)
 	xwin->img = mlx_new_image(xwin->mlx, SX, SY);
 	if (xwin->img == NULL)
 		clean_exit(xwin, 1);
-	xwin->img_addr = mlx_get_data_addr(xwin->img, &xwin->bpp, &xwin->sl, &xwin->endian);
+	xwin->img_addr = mlx_get_data_addr(xwin->img, &xwin->bpp,
+			&xwin->sl, &xwin->endian);
 	if (xwin->img_addr == NULL)
 		clean_exit(xwin, 1);
 	xwin->asp_ratio = SX / (double)SY;
-	xwin->moveX = 0;
-	xwin->moveY = 0;
+	xwin->movex = 0;
+	xwin->movey = 0;
 	xwin->zoom = 1;
 	return (0);
 }
 
-int		int_color(unsigned char r, unsigned char g, unsigned char b)
+int	int_color(unsigned char r, unsigned char g, unsigned char b)
 {
 	int	col;
 
@@ -49,16 +52,16 @@ int		int_color(unsigned char r, unsigned char g, unsigned char b)
 
 void	set_bits(char *addr, unsigned int color, int bpp)
 {
-    int	i;
+	int	i;
 
 	i = -1;
 	while (++i < bpp)
 	{
-        if (color & (1 << i))
-            addr[i / 8] |= (1 << (i % 8));
-        else
-            addr[i / 8] &= ~(1 << (i % 8));
-    }
+		if (color & (1 << i))
+			addr[i / 8] |= (1 << (i % 8));
+		else
+			addr[i / 8] &= ~(1 << (i % 8));
+	}
 }
 
 void	clean_exit(t_mlx *xwin, int errc)
